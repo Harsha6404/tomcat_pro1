@@ -1,11 +1,13 @@
 pipeline {
     agent any
-    stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/Harsha6404/java-project-maven-new.git'
-            }
-        }
+     steps {
+        git(
+            url: 'https://github.com/Harsha6404/tomcat_pro1.git',
+            branch: 'main',
+            credentialsId: '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'
+        )
+    }
+}
 
         stage('Build WAR') {
             steps {
