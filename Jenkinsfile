@@ -12,7 +12,24 @@ pipeline {
         }
         stage('artifact') {
             steps {
-                nexusArtifactUploader artifacts: [[artifactId: 'myapp', classifier: '', file: '**/*.war', type: 'war']], credentialsId: 'nexuscreds', groupId: 'in.reyaz', nexusUrl: '13.60.45.200:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'tomcat', version: '8.3.3-SNAPSHOT'
+                nexusArtifactUploader(
+    artifacts: [
+        [
+            artifactId: 'myapp',
+            classifier: '',
+            file: 'target/myapp.war',
+            type: 'war'
+        ]
+    ],
+    credentialsId: 'nexuscreds',
+    groupId: 'in.reyaz',
+    nexusUrl: '13.60.45.200:8081',
+    nexusVersion: 'nexus3',
+    protocol: 'http',
+    repository: 'tomcat',
+    version: '8.3.3-SNAPSHOT'
+)
+
             }
         }
         stage('Build WAR') {
