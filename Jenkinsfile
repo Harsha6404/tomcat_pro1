@@ -27,7 +27,7 @@ pipeline {
             steps {
                 sh '''
                docker rm -f tomcat-app || true
-               docker run -d --name tomcat-app -p 2222:8080 mytomcat
+               docker run -d --name tomcat-app -p 1515:8080 mytomcat
 
                 '''
             }
