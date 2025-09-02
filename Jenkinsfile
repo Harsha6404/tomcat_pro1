@@ -10,7 +10,13 @@ pipeline {
                 )
             }
         }
-        stage('artifact') {
+
+        stage('Build WAR') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+               stage('artifact') {
             steps {
                 nexusArtifactUploader(
     artifacts: [
@@ -32,12 +38,6 @@ pipeline {
 
             }
         }
-        stage('Build WAR') {
-            steps {
-                sh 'mvn clean package'
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t mytomcat .'
