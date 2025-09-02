@@ -1,13 +1,15 @@
 pipeline {
     agent any
-     steps {
-        git(
-            url: 'https://github.com/Harsha6404/tomcat_pro1.git',
-            branch: 'main',
-            credentialsId: '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'
-        )
-    }
-}
+    stages {
+        stage('Checkout') {
+            steps {
+                git(
+                    url: 'https://github.com/Harsha6404/tomcat_pro1.git',
+                    branch: 'main',
+                    credentialsId: 'github-token'
+                )
+            }
+        }
 
         stage('Build WAR') {
             steps {
