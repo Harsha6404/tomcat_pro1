@@ -16,28 +16,28 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-               stage('artifact') {
-            steps {
-                nexusArtifactUploader(
-    artifacts: [
-        [
-            artifactId: 'myapp',
-            classifier: '',
-            file: 'target/myapp.war',
-            type: 'war'
-        ]
-    ],
-    credentialsId: 'nexuscreds',
-    groupId: 'in.reyaz',
-    nexusUrl: '13.60.45.200:8081',
-    nexusVersion: 'nexus3',
-    protocol: 'http',
-    repository: 'tomcat',
-    version: '8.3.3-SNAPSHOT'
-)
+//                stage('artifact') {
+//             steps {
+//                 nexusArtifactUploader(
+//     artifacts: [
+//         [
+//             artifactId: 'myapp',
+//             classifier: '',
+//             file: 'target/myapp.war',
+//             type: 'war'
+//         ]
+//     ],
+//     credentialsId: 'nexuscreds',
+//     groupId: 'in.reyaz',
+//     nexusUrl: '13.60.45.200:8081',
+//     nexusVersion: 'nexus3',
+//     protocol: 'http',
+//     repository: 'tomcat',
+//     version: '8.3.3-SNAPSHOT'
+// )
 
-            }
-        }
+//             }
+//         }
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t mytomcat .'
