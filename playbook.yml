@@ -1,7 +1,7 @@
-- hosts: webservers
+- hosts: installing git
   become: yes
   tasks:
-    - name: Install Nginx
+    - name: Install git
       yum:
-        name: nginx
+        name: git
         state: present
