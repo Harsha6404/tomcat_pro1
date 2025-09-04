@@ -20,5 +20,5 @@
 
     - name: Getting Code from GIT
       git:
-        repo: https://github.com/ReyazShaik/amazon.git
+        repo: https://github.com/Harsha6404/amazon-html.git
         dest: /var/www/html
