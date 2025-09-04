@@ -16,28 +16,7 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-//                stage('artifact') {
-//             steps {
-//                 nexusArtifactUploader(
-//     artifacts: [
-//         [
-//             artifactId: 'myapp',
-//             classifier: '',
-//             file: 'target/myapp.war',
-//             type: 'war'
-//         ]
-//     ],
-//     credentialsId: 'nexuscreds',
-//     groupId: 'in.reyaz',
-//     nexusUrl: '13.60.45.200:8081',
-//     nexusVersion: 'nexus3',
-//     protocol: 'http',
-//     repository: 'tomcat',
-//     version: '8.3.3-SNAPSHOT'
-// )
 
-//             }
-//         }
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t mytomcat .'
@@ -73,5 +52,18 @@ pipeline {
                 '''
             }
         }
+                stage('Deploy with Ansible') {
+            steps {
+                sshagent(['ansible-ssh']) {
+                    sh '''
+                        ssh -o StrictHostKeyChecking=no ec2-user@<Ansible_Control_Node_IP> "
+                            cd /home/ec2-user/tomcat_pro1 &&
+                            ansible-playbook -i inventory.ini playbook.yml
+                        "
+                    '''
+                }
+            }
+        }
+
     }
 }
