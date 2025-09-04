@@ -1,22 +1,20 @@
-
-- name: Setup Nginx and deploy website
+- name: Setup Apache and deploy website
   hosts: all
   become: yes
 
   tasks:
-   
-    - name: Install apache
+    - name: Install Apache
       yum:
         name: httpd
         state: present
 
-    - name: Start and enable apache
+    - name: Start and enable Apache
       service:
         name: httpd
         state: started
         enabled: yes
 
-    - name: Install git
+    - name: Install Git
       yum:
         name: git
         state: present
@@ -25,5 +23,3 @@
       git:
         repo: https://github.com/Harsha6404/amazon-html.git
         dest: /var/www/html
-
-   
