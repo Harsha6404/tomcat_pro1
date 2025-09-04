@@ -54,15 +54,17 @@ pipeline {
             }
         }
 
-        stage('Run Ansible Playbook') {
-            steps {
-                ansiblePlaybook(
-                    playbook: 'playbook.yml',
-                    inventory: 'inventory.ini',
-                    credentialsId: 'ansible-ssh',  // must exist in Jenkins credentials
-                    colorized: true
-                )
-            }
-        }
+       stage('Run Ansible Playbook') {
+    steps {
+        ansiblePlaybook(
+            playbook: 'playbook.yml',
+            inventory: 'inventory.ini',
+            credentialsId: 'ansible-ssh',
+            installation: 'ansible',   // must match the name you set in Tools
+            colorized: true
+        )
+    }
+}
+
     }
 }
