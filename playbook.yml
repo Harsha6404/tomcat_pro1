@@ -24,10 +24,6 @@
     - name: Clone website from GitHub
       git:
         repo: https://github.com/Harsha6404/amazon-html.git
-        dest: /usr/share/nginx/html
+        dest: /var/www/html
 
-    - name: Restart nginx to apply changes
-      service:
-        name: nginx
-        state: restarted
-
+   
