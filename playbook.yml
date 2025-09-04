@@ -1,7 +1,24 @@
-- hosts: installing git
+---
+- name: Mini Project
+  hosts: all
   become: yes
   tasks:
-    - name: Install git
+    - name: Installing HTTPD
+      yum:
+        name: httpd
+        state: present
+
+    - name: Starting HTTPD
+      service:
+        name: httpd
+        state: started
+
+    - name: Installing GIT
       yum:
         name: git
         state: present
+
+    - name: Getting Code from GIT
+      git:
+        repo: https://github.com/ReyazShaik/amazon.git
+        dest: /var/www/html
