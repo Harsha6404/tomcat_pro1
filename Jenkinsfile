@@ -58,8 +58,8 @@ stage('Run Ansible Playbook') {
         ansiblePlaybook(
             playbook: 'playbook.yml',
             inventory: 'inventory.ini',
-            credentialsId: 'ansible-ssh',
-            installation: 'ansible',   // must match the name in Jenkins Tool config
+            credentialsId: 'ansible-ssh',  // must exist in Jenkins credentials
+            installation: 'ansible',       // must match the name in Jenkins tool config
             colorized: true
         )
     }
