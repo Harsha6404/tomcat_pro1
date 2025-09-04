@@ -53,14 +53,13 @@ pipeline {
                 '''
             }
         }
-
-       stage('Run Ansible Playbook') {
+stage('Run Ansible Playbook') {
     steps {
         ansiblePlaybook(
             playbook: 'playbook.yml',
             inventory: 'inventory.ini',
             credentialsId: 'ansible-ssh',
-            installation: 'ansible',   // must match the name you set in Tools
+            installation: 'ansible',   // must match the name in Jenkins Tool config
             colorized: true
         )
     }
