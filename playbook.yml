@@ -4,24 +4,22 @@
   become: yes
 
   tasks:
-    - name: Enable nginx on Amazon Linux 2
-      command: amazon-linux-extras enable nginx1
-
-    - name: Install nginx
+   
+    - name: Install apache
       yum:
-        name: nginx
-        state: absent
+        name: httpd
+        state: present
 
-    - name: Start and enable nginx
+    - name: Start and enable apache
       service:
-        name: nginx
+        name: httpd
         state: started
         enabled: yes
 
     - name: Install git
       yum:
         name: git
-        state: absent
+        state: present
 
     - name: Clone website from GitHub
       git:
