@@ -1,24 +1,35 @@
----
-- name: Mini Project
+
+- name: Setup Nginx and deploy website
   hosts: all
   become: yes
+
   tasks:
-    - name: Installing HTTPD
+    - name: Enable nginx on Amazon Linux 2
+      command: amazon-linux-extras enable nginx1
+
+    - name: Install nginx
       yum:
-        name: httpd
-        state: present
+        name: nginx
+        state: absent
 
-    - name: Starting HTTPD
+    - name: Start and enable nginx
       service:
-        name: httpd
+        name: nginx
         state: started
+        enabled: yes
 
-    - name: Installing GIT
+    - name: Install git
       yum:
         name: git
-        state: present
+        state: absent
 
-    - name: Getting Code from GIT
+    - name: Clone website from GitHub
       git:
         repo: https://github.com/Harsha6404/amazon-html.git
-        dest: /var/www/html
+        dest: /usr/share/nginx/html
+
+    - name: Restart nginx to apply changes
+      service:
+        name: nginx
+        state: restarted
+
