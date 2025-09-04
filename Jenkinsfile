@@ -51,17 +51,14 @@ pipeline {
                     docker service create --name mytomcatservice -p 5151:8080 --replicas=7 mytomcat
                 '''
             }
-        }
-                stage('Deploy with Ansible') {
+        } stage('Run Ansible Playbook') {
             steps {
-                sshagent(['ansible-ssh']) {
-                    sh '''
-                        ssh -o StrictHostKeyChecking=no ec2-user@<Ansible_Control_Node_IP> "
-                            cd /home/ec2-user/tomcat_pro1 &&
-                            ansible-playbook -i inventory.ini playbook.yml
-                        "
-                    '''
-                }
+                ansiblePlaybook(
+                    playbook: 'playbook.yml',
+                    inventory: 'inventory.ini',
+                    credentialsId: 'ansible-ssh',  // must exist in Jenkins credentials
+                    colorized: true
+                )
             }
         }
 
