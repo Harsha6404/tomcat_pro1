@@ -35,15 +35,16 @@ pipeline {
                 }
             }
         }
+
         stage('Run Docker Container') {
             steps {
                 sh '''
-               docker rm -f tomcat-app || true
-               docker run -d --name tomcat-app -p 1515:8080 mytomcat
-
+                    docker rm -f tomcat-app || true
+                    docker run -d --name tomcat-app -p 1515:8080 mytomcat
                 '''
             }
         }
+
         stage('Docker Swarm Deploy') {
             steps {
                 sh '''
@@ -51,7 +52,9 @@ pipeline {
                     docker service create --name mytomcatservice -p 5151:8080 --replicas=7 mytomcat
                 '''
             }
-        } stage('Run Ansible Playbook') {
+        }
+
+        stage('Run Ansible Playbook') {
             steps {
                 ansiblePlaybook(
                     playbook: 'playbook.yml',
@@ -61,6 +64,5 @@ pipeline {
                 )
             }
         }
-
     }
 }
