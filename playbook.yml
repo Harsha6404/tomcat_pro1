@@ -21,5 +21,5 @@
 
     - name: Clone website from GitHub
       git:
-        repo: https://github.com/Harsha6404/workshop-html.git
+        repo: https://github.com/Harsha6404/hotstar-app.git
         dest: /var/www/html
