@@ -66,7 +66,7 @@ pipeline {
 // }
         stage('Deploy with Ansible') {
     steps {
-     ansiblePlaybook credentialsId: 'linuxcreds', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/tomcat/inventory_hosts', playbook: '/var/lib/jenkins/workspace/tomcat/playbook.yml', vaultTmpPath: ''
+     ansiblePlaybook credentialsId: 'linuxcreds', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/tomcat/inventory_hosts', playbook: '/var/lib/jenkins/workspace/tomcat/roleplay.yml', vaultTmpPath: ''
     }
 }
 
