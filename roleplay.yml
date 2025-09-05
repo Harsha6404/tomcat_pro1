@@ -1,8 +1,8 @@
- - name: roolspalybook
-   hosts: all
-   become: yes
-   gather_facts: false
-   roles:
-     - package
-     - users
-     - webserver
+- name: roolspalybook
+  hosts: all
+  become: yes
+
+  roles:
+    - package
+    - users
+    - webserver
