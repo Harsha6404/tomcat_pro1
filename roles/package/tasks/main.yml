@@ -1,4 +1,25 @@
-- name: installing docker
-  yum:
-    name: docker
-    state: present
+- name: Setup Apache and deploy website
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Install Apache
+      yum:
+        name: httpd
+        state: present
+
+    - name: Start and enable Apache
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Install Git
+      yum:
+        name: git
+        state: present
+
+    - name: Clone website from GitHub
+      git:
+        repo: https://github.com/Harsha6404/amazon-html.git
+        dest: /var/www/html
