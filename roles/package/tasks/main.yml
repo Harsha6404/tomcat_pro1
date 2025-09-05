@@ -1,2 +1,4 @@
 - name: installing docker
-  yum: name=docker state=present
+  yum:
+    name: docker
+    state: present
