@@ -64,12 +64,12 @@ pipeline {
 //         )
 //     }
 // }
-        stage('ansible') {
+        stage('Deploy with Ansible') {
     steps {
-        sh 'sh 'ansible-playbook -i inventory.ini playbook.yml'
-'
+        sh 'ansible-playbook -i inventory.ini playbook.yml'
     }
 }
+
 
     }
 }
