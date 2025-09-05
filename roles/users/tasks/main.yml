@@ -1,9 +1,9 @@
 - name: installing docker
   yum:
     name: docker
-    state: present
+    state: absent
 
 - name: starting docker
   service:
     name: docker
-    state: started
+    state: stoped
