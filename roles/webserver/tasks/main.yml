@@ -1,5 +1,7 @@
-- name: dainamic variables
-  yum: name={{items}} state=present
+- name: install extra packages
+  yum:
+    name: "{{ item }}"
+    state: present
   with_items:
     - php
     - tree
