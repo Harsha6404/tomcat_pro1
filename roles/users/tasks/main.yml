@@ -1,0 +1,9 @@
+- name: installing docker
+  yum:
+    name: docker
+    state: present
+
+- name: starting docker
+  service:
+    name: docker
+    state: started

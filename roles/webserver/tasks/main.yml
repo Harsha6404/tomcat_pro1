@@ -1,0 +1,6 @@
+- name: dainamic variables
+  yum: name={{items}} state=present
+  with_items:
+    - php
+    - tree
+    - htop
