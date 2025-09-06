@@ -3,7 +3,3 @@
     name: docker
     state: absent
 
-- name: starting docker
-  service:
-    name: docker
-    state: stoped
