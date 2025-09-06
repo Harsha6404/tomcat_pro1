@@ -1,8 +1,4 @@
-- name: Setup Apache and deploy website
-  hosts: all
-  become: yes
 
-  tasks:
     - name: Install Apache
       yum:
         name: httpd
