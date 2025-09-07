@@ -48,22 +48,12 @@ pipeline {
         stage('Docker Swarm Deploy') {
             steps {
                 sh '''
-                    docker service update --image mytomcat mytomcatservice || \
-                    docker service create --name mytomcatservice -p 5151:8080 --replicas=7 mytomcat
+                    docker service update --image mytomcat mytomcatservice1 || \
+                    docker service create --name mytomcatservice1 -p 5151:8080 --replicas=7 mytomcat
                 '''
             }
         }
-// stage('Run Ansible Playbook') {
-//     steps {
-//         ansiblePlaybook(
-//             playbook: 'playbook.yml',
-//             inventory: 'inventory.ini',
-//             credentialsId: 'ansible-ssh',  // must exist in Jenkins credentials
-//             installation: 'ansible',       // must match the name in Jenkins tool config
-//             colorized: true
-//         )
-//     }
-// }
+
         stage('Deploy with Ansible') {
     steps {
      ansiblePlaybook credentialsId: 'linuxcreds', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/tomcat/inventory_hosts', playbook: '/var/lib/jenkins/workspace/tomcat/playbook.yml', vaultTmpPath: ''
