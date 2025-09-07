@@ -48,8 +48,8 @@ pipeline {
         stage('Docker Swarm Deploy') {
             steps {
                 sh '''
-                    docker service update --image mytomcat mytomcatservice1 || \
-                    docker service create --name mytomcatservice1 -p 5151:8080 --replicas=3 mytomcat
+                    docker service update --image mytomcat mytomcatservice || \
+                    docker service create --name mytomcatservice -p 5151:8080 --replicas=3 mytomcat
                 '''
             }
         }
