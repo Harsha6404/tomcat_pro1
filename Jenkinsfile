@@ -49,7 +49,7 @@ pipeline {
             steps {
                 sh '''
                     docker service update --image mytomcat mytomcatservice1 || \
-                    docker service create --name mytomcatservice1 -p 5151:8080 --replicas=7 mytomcat
+                    docker service create --name mytomcatservice1 -p 5151:8080 --replicas=3 mytomcat
                 '''
             }
         }
