@@ -1,8 +1,7 @@
-- name: install extra packages
+- name: Install extra packages
   yum:
-    name: "{{ item }}"
-    state: absent
-  with_items:
-    - php
-    - tree
-    - htop
+    name:
+      - php
+      - tree
+      - htop
+    state: present
